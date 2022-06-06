@@ -11,18 +11,18 @@ body:
     id: opening-questions
     attributes:
       label: Opening questions
-      description: These opening questions will help ensure you have not missed sny things to check before reporting a problem in the specifications
+      description: These opening questions will help ensure you have not missed any things to check before reporting a problem in the specifications
       options:
         - label: I have checked the development branch of the specification and the problem still exists there
           required: true
-        - label: I agree to follow the [https://govstack.global](GovStack Code of Conduct)
+        - label: I agree to follow the [GovStack Code of Conduct](https://govstack.global)
           required: true
         - label: I have checked the current list of issues and confirm this problem has not already been reported
           required: true
   - type: input
     id: location
     attributes:
-      label: Location (url) of the error
+      label: Location (url) of the problem
       description: Please enter the url of the published page containing the problem
       placeholder: example - https://docs.govstack.global/contribution
     validations:
