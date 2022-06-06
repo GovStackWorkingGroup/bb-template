@@ -1,0 +1,50 @@
+name: Problem Report
+description: Report a problem in the specifications
+labels: ["bug"]
+assignees: "rachellawson"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking the time to submit a problem report. Below, you will find a few questions to help you give us the information needed to handle the report.
+  - type: checkboxes
+    id: opening-questions
+    attributes:
+      label: Opening questions
+      description: These opening questions will help ensure you have not missed sny things to check before reporting a problem in the specifications
+      options:
+        - label: I have checked the development branch of the specification and the problem still exists there
+          required: true
+        - label: I agree to follow the [https://govstack.global](GovStack Code of Conduct)
+          required: true
+        - label: I have checked the current list of issues and confirm this problem has not already been reported
+          required: true
+  - type: input
+    id: location
+    attributes:
+      label: Location (url) of the error
+      description: Please enter the url of the published page containing the problem
+      placeholder: example - https://docs.govstack.global/contribution
+    validations:
+      required: true
+  - type: textarea
+    id: what-bug
+    attributes:
+      label: What is the problem you see?
+      description: What do you consider to be incorrect and why is is incorrect?
+      value: |
+        **Is your feature request related to a problem? Please describe.**
+        A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+
+        **Describe the solution you'd like**
+        A clear and concise description of what you want to happen.
+
+        **Describe alternatives you've considered**
+        A clear and concise description of any alternative solutions or features you've considered.
+
+        **Additional context**
+        Add any other context or screenshots about the feature request here.
+    validations:
+      required: true
+
+
