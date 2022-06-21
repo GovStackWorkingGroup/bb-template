@@ -1,8 +1,9 @@
 name: Problem Report
 description: Report a problem in the specifications
 labels: ["bug"]
-assignees: "rachellawson"
 body:
+  - type: markdown
+    value: "## Thank you!"
   - type: markdown
     attributes:
       value: |
@@ -13,11 +14,11 @@ body:
       label: Opening questions
       description: These opening questions will help ensure you have not missed any things to check before reporting a problem in the specifications
       options:
-        - label: I have checked the current list of issues and confirm this problem has not already been reported
+        - label: I have checked the [current list of issues](../) and confirm this problem has not already been reported
           required: true
         - label: I have checked the development branch of the specification and the problem still exists there
           required: true
-        - label: I agree to follow the [GovStack Code of Conduct](https://govstack.global)
+        - label: I agree to follow the [GovStack Code of Conduct](https://govstack.global/coc)
           required: true
   - type: input
     id: location
@@ -28,22 +29,19 @@ body:
     validations:
       required: true
   - type: textarea
-    id: what-bug
+    id: what-problem
     attributes:
       label: What is the problem you see?
       description: What do you consider to be incorrect and why is is incorrect?
       value: |
-        **Is your feature request related to a problem? Please describe.**
-        A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+        **Please describe the problem you see**
+        A clear and concise description of what the problem is. Ex. I think we need to change [...]
 
         **Describe the solution you'd like**
-        A clear and concise description of what you want to happen.
+        A clear and concise description of what change you propose.
 
         **Describe alternatives you've considered**
-        A clear and concise description of any alternative solutions or features you've considered.
-
-        **Additional context**
-        Add any other context or screenshots about the feature request here.
+        A clear and concise description of any alternative solutions you've considered.
     validations:
       required: true
 
