@@ -1,10 +1,27 @@
-# \<name of building block>
+# GovStack Building Block Template
 
-{% hint style="success" %}
-Throughout this template are a series of these info callouts. They are designed to guide the type of content to add in each section and often contain example content from other building blocks. Delete them as no longer required.
-{% endhint %}
+This template is intended to be used by the vaiours GovStack building block
+repos. Each building block repo will have at least 4 main sections, outlined in
+the directory structure below:
 
+## Repo Structure
 
-
-\
-Developed by: `<Names and organization affiliations of working group members>` in cooperation with GIZ, ITU, DIAL, and the Government of Estonia
+```sh
+README.md
+/spec # the markdown files which are used to build the specification in GitBook
+/api # the openapi specification
+/test # the test plan and tests
+  plan.md
+/examples # examples for deploying, configuring, and testing applications which implement the behaviors specified by this building block
+  /application-a
+    README.md # instructions for deployment/testing
+    docker-compose.yaml # example deployment file
+      db
+      web
+      adaptor
+      security-server
+    Caddyfile # example config for "adaptor"
+    Dockerfile # dockerfile to build "adaptor"
+  /application-b
+  /application-c
+```
