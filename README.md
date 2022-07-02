@@ -2,7 +2,12 @@
 
 This template is intended to be used by the vaiours GovStack building block
 repos. Each building block repo will have at least 4 main sections, outlined in
-the directory structure below:
+the directory structure below.
+
+## Gitbook and the published "Building Block Specifications" document
+
+Note that pushes to the `main` branch will automatically trigger a Gitbook build
+and deployment from the `/spec` directory.
 
 ## Repo Structure
 
