@@ -1,5 +1,19 @@
-Thank you for proposing a change. But first...
+<!--- Provide a short summary of your changes in the Title above. Prefix with the associated issue number. -->
 
-**We first need an issue creating to describe the problem the PR is resolving**
+## Description
+<!--- Describe your changes in detail -->
 
-Once you have an issue and a maintainer is asking for you to go ahead and make a pull request, please do so and reference the issue number (#xx) in the PR title.
+## Related Issue
+<!--- This project only accepts pull requests related to open issues -->
+<!--- If suggesting a new feature or change, please discuss it with a maintainer in an issue first -->
+<!--- to reach agreement on what a successful pull request would include. -->
+<!--- Please link to the issue here: -->
+
+## Motivation and Context
+<!--- Why is this change required? What problem does it solve? -->
+<!--- If it fixes an open issue, please link to the issue here. -->
+
+## How Has This Been Tested?
+<!--- Please describe in detail how you tested your changes. -->
+<!--- Include details of your testing environment, and the tests you ran to -->
+<!--- see how your change affects other areas of the code, etc. -->
