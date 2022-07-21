@@ -1,11 +1,11 @@
-name: Problem Report
+name: Specifications Problem Report
 description: Report a problem or "bug" in the specifications
 labels: ["bug"]
 body:
   - type: markdown
     attributes:
       value: |
-        Thank you for taking the time to submit your feedback. Below, you will find a few questions to help you give us the information needed to handle your feedback.
+        Thank you for taking the time to submit your feedback on the GovStack specifications. Below, you will find a few questions to help you give us the information needed to handle your feedback.
   - type: checkboxes
     id: opening-questions
     attributes:
@@ -20,7 +20,7 @@ body:
     id: location
     attributes:
       label: Location (url) of the problem
-      description: Please enter the url of the published page containing the problem
+      description: Please enter the url of the published page containing the problem.
       placeholder: example - https://docs.govstack.global/contribution
     validations:
       required: true
