@@ -21,7 +21,7 @@ For each data model, the following information should be provided:
 
 _\<Example Data Elements>_
 
-#### WorkList Data Structure:  <a href="#worklist-data-structure" id="worklist-data-structure"></a>
+## 7.1 WorkList Data Structure:  <a href="#worklist-data-structure" id="worklist-data-structure"></a>
 
 **Description:** The WorkList data structure is used to track a list of subscribers to a particular session or event.
 
@@ -36,7 +36,7 @@ _\<Example Data Elements>_
 | end\_time   | date          | End date/time for the WorkList             |                 |                 | Y            |               |                                                                             |
 | alerts      | integer array | Array of assigned alerts for this WorkList | Alert           | FK              | N            |               |                                                                             |
 
-### Resource Model
+## 7.2 Resource Model
 
 _Note: Recommend using_ [_https://app.diagrams.net/_](https://app.diagrams.net/) _to create the resource model and store in BuildingBlock repository_
 

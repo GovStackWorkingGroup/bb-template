@@ -1,55 +1,57 @@
-# 9 Workflows
+# 9 Internal Workflows
 
 {% hint style="success" %}
-A workflow provides a detailed view of how this building block will interact with other building blocks to support common use cases.
+This section describes standard _internal_ workflows that a building block should support. Each internal workflow must be linked to one of the Functional Requirements defined in section 6.
 
-This section lists workflows that this building block must support. Other workflows may be implemented in addition to those listed.
-
-The workflows should provide a name and description as well as a sequence diagram that shows the interactions between actors and various building blocks
-
-_Note: Workflows may be categorized into categories where appropriate_
+An internal workflow describes the internal processes that a Building Block needs to execute to complete a request from an external application or Building Block to fulfull the functional requirement
 {% endhint %}
 
-_\<Example Workflow>_
+_\<Example Internal Workflows>_
 
-### Consenting at initial registration (Pre-registration) using a centralised ID system
+### 9.1 Start a workflow process via API.&#x20;
 
-The first and somewhat unique use-case is related to the need for consent when the Individual is not yet provisioned in the System processing the data. In such cases, the workflow requires the creation of a valid and trusted Foundational ID to be linked with the Consent Record. Below is shown how a pre-registration use of consent workflow works.
+This internal workflow is used by the Workflow Building Block to initiate a workflow process. An external application (Building Block) calls an API in the Workflow Building Block which will launch a workflow process. This functional requirement must also support submission of data payload through variables in the same API call.
+
+Examples:&#x20;
+
+* [PostPartum and Infant Care Use Case, Payment Step](https://govstack-global.atlassian.net/wiki/spaces/GH/pages/49381394/PostPartum-01-Example+Implementation+Original+-+multiple+steps): Validate the mother has completed all steps (visited a pediatrician, procured medicine and nutrition supplies, and visited the therapy center) by connecting to MCTS registry
+* [Unconditional Social Cash Transfer, Elibility Determination](https://govstack.gitbook.io/product-use-cases/product-use-case/inst-1-unconditional-social-cash-transfer): Send beneficiary data from Registration BB to Workflow BB
 
 ```mermaid
 sequenceDiagram
 
-actor Individual
-Individual->>+Application: Invoke registration workflow
-Application->>+Workflow BB: Trigger registration workflow
+External BB-->>Workflow BB: Call API to start workflow process
+Workflow BB-->>Workflow BB: Launch process
+Workflow BB-->>External BB: Return Process ID
 
-note over Workflow BB: Identifies the need for consent
+```
 
-Workflow BB->>+Consent BB: Fetch consent agreement (Registration)
-Consent BB-->>-Workflow BB: Returns consent agreement
-Workflow BB-->>-Application: Returns consent agreement
-Application-->>-Individual: Show consent agreement to fetch data 
 
-note over Individual: The individual agrees<br />to the consent agreement 
 
-Individual->>+Application: Accept consent agreement
-Application->>+Foundational ID: Redirect to Foundational ID UI
+### 9.2 Booking an appointment&#x20;
 
-Foundational ID-->>-Individual: Return Foundational ID authentication UI
-Individual->>+Foundational ID: Provide credentials to perform authentication
-Foundational ID-->>-Application: Return Foundational ID token (e.g. JWT token) 
+The first and somewhat unique use-case is related to the need for consent when the Individual is not yet provisioned in the System processing the data. In such cases, the workflow requires the creation of a valid and trusted Foundational ID to be linked with the Consent Record. Below is shown how a pre-registration use of consent workflow works.
 
-note over Application: Foundational ID token recieved<br />is the proof of consent
+Examples:&#x20;
 
-Application->>+Workflow BB: Fetch data workflow
-note right of Workflow BB: Fetch data, <br />For e.g. a population regsitry.
+* Postpartum Use Case, Appointment scheduling step: In this case, a health care worker will book an appointment into a specific slot. The Scheduler Building Block will leverage the Messaging Building Block to send a message to the patient with an appointment confirmation.
 
-Workflow BB-->>-Application: Confirms the workflow
-Application-->>+Workflow BB: Record consent against consent agreement (Foundation ID token, Appl user ID)
-Workflow BB-->>+Consent BB: Record consent against the consent agreement
-Consent BB-->>-Workflow BB: Return consent ID
-Workflow BB-->>-Application: Return consent ID
-Application-->>-Individual: Confirm registration
+```mermaid
+sequenceDiagram
 
-note over Foundational ID: Individual is registered
+HCworker->>PPCP_APP: Request appointment<br />for consultation session<br /> with preferences<br />(date-time range,\nclinics, doctors,etc)
+PPCP_APP->>Scheduler [planner]: Find unbooked session<br />slots in consultation event<br />for given preferrences
+Scheduler [planner]->>PPCP_APP: Report available<br />session slots\n with terms of service
+opt: 
+    HCworker ->>PPCP_APP:Pay fee, if any
+    PPCP_APP->HCworker:payment receipt 
+end
+HCworker->>PPCP_APP:Confirm slot 
+PPCP_APP->>Scheduler [planner]: Book appointment<br />for consultation session 
+Scheduler [planner]->>Scheduler [Worklist]: Update in<br />consultant's worklist
+Scheduler [planner]->>PPCP_APP:Confirm booking of \n appointment
+PPCP_APP->>HCworker:Publish booking details 
+Scheduler [planner]->>Messaging BB: Appointment confirmation message
+Messaging BB->>Subscriber: Deliver message \n to Subscriber
+Messaging BB->>Scheduler [planner]: delivery confirmation
 ```
