@@ -1,7 +1,8 @@
 # Mockoon API
 
-This is a mock application which performs the whole OpenAPI spec for Template
-BB.
+This is an example of mock application which performs the whole OpenAPI spec.
+
+Instruction of ORB setup is available in main README.md.
 
 ## Setup
 
