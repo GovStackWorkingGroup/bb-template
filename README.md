@@ -30,3 +30,8 @@ README.md
   /application-b
   /application-c
 ```
+
+## ORB setup
+
+Documentation for ORB setup is available here:
+[ORB setup instruction](https://govstack-global.atlassian.net/wiki/spaces/GH/pages/191692823/ORB+setup+instruction)
