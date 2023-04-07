@@ -9,9 +9,19 @@ All APIs will be defined using the OpenAPI (Swagger) standard. The API definitio
 
 This section will primarily contain links to the GitHub repository for OpenAPI definition (yaml) files as well as to a website hosted by GovStack that provides a live API documentation portal.
 
-OpenAPI links to the GitHub repository can be made in an interactive way using the GitBook OpenAPI widget, linking to the GitHub repo version of the .json file, remembering to link to the “raw” url. An example from the Registries BB is shown below and can be replaced:
+Note that APIs should be grouped by functional area (from sections 4 and 6) where appropriate.
+
+OpenAPI links to the GitHub repository can be made in an interactive way using the GitBook OpenAPI widget, linking to the GitHub repo version of the .yaml file, remembering to link to the “raw” url. An example from the Registries BB is shown below and can be replaced.
 {% endhint %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/BuildingBlockAPI/main/RegistrationBB/GovStack_Registration_BB_API_template-1.0.0-resolved.json" path="undefined" method="undefined" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/BuildingBlockAPI/main/RegistrationBB/GovStack_Registration_BB_API_template-1.0.0-resolved.json](https://raw.githubusercontent.com/GovStackWorkingGroup/BuildingBlockAPI/main/RegistrationBB/GovStack_Registration_BB_API_template-1.0.0-resolved.json)
+## 8.1 Administrative APIs
+
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-consent/main/api/consent-openapi.yaml" path="/config/policy/" method="post" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-consent/main/api/consent-openapi.yaml](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-consent/main/api/consent-openapi.yaml)
+{% endswagger %}
+
+## 8.2 User APIs
+
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-consent/main/api/consent-openapi.yaml" path="/service/individual/" method="post" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-consent/main/api/consent-openapi.yaml](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-consent/main/api/consent-openapi.yaml)
 {% endswagger %}

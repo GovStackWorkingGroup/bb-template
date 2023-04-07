@@ -2,6 +2,8 @@
 
 {% hint style="success" %}
 Set the context of the Building Block for the reader. The description should not assume that the reader has any experience of the GovStack system other than that found on the GovStack website.
+
+If there are assumptions or context for this building block that may be needed for the reader, it can be provided in this section.&#x20;
 {% endhint %}
 
 _\<Example Description below>_

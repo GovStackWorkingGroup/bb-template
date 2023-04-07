@@ -6,15 +6,21 @@ The Cross-cutting requirements described in this section are an extension of the
 Cross-cutting requirements will use the same language (REQUIRED, RECOMMENDED or OPTIONAL) as specified in the architecture document.
 {% endhint %}
 
-_\<Example Cross-Cutting Requirements>_
+_\<Example Cross-Cutting Requirements from Payments Building Block>_
 
-## 5.1 Personal data must be kept private (REQUIRED)
+## 5.1  Follow all Statutory and Operational Requirements (REQUIRED)
 
-Personal data MUST be kept private and never shared with any parties, except where specific authorisation has been granted. The Consent BB shall follow the privacy principles as laid out in the Govstack architecture.
+The Payments Building Block assumes that the statutory and operational requirements around accounts (i.e. know your customer/anti-money laundering/counter-terrorist financing) must have been completed by an outside system, which is capable of communicating that status in appropriate timeframes.
 
-## 5.2 All transactions must be Audit Logged (RECOMMENDED)
+## 5.2 All Participants should be previously registered (RECOMMENDED)
 
-Logs SHOULD be kept in a database of all created, updated, or deleted records. Logs MUST include timestamps and identify the user and affiliation that performed the transaction.
+The Payment System or Scheme in a country may require that participating payor or payee entities, whether health clinics, ministries, or individuals must have been registered with a regulated banking or non-banking entity prior to the use of the Payments Building Block.
 
-All audit logs shall be integrity protected against tampering. The Consent BB shall follow the data policy and audit logging requirements as laid out in the Govstack architecture.
+## Exceptions to Architectural Cross-Cutting Specifications
+
+Cross-Cutting specifications for all Building Blocks are detailed in the [GovStack non-functional requirements document](https://govstack.gitbook.io/specification/architecture-and-nonfunctional-requirements/5-cross-cutting-requirements). However, for this Building Block the following Cross-Cutting Specifications are not required:
+
+**5.17 Databases should not Include Business Logic or Stored Procedures**
+
+Several mundane localized operations on data such as searching, filtering, and format transformations may find a better performance by being collocated with the database itself in form of stored procedures in typical SQL databases. Such procedures must be configured to handle the concurrent processing of multiple requests, with an appropriate mechanism(e.g. SQL agents/SSIS packages/service brokers/etc.). Since data is collocated with the code, when scaled up to clusters of multiple instances of database servers, each instance will utilize local Safeguard for Privileged Sessions.  However, this will create an additional burden on maintenance and update of source code as applications may have part of logic in backend code and partially embedded in database servers. To host complex queries related to data from different databases it is recommended to implement it in business logic rather than stored procedures.  In this case, scalability must be ensured by suitable application infrastructure scaling mechanisms such as Virtual Machine-level scaling and automatic elastic frameworks.
 
