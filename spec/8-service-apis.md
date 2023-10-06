@@ -16,12 +16,16 @@ OpenAPI links to the GitHub repository can be made in an interactive way using t
 
 ## 8.1 Administrative APIs
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-consent/main/api/consent-openapi.yaml" path="/config/policy/" method="post" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-consent/main/api/consent-openapi.yaml](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-consent/main/api/consent-openapi.yaml)
+{% swagger src=".gitbook/assets/Govstack_scheduler_BB_APIs.json" path="/event/new" method="post" %}
+[Govstack_scheduler_BB_APIs.json](.gitbook/assets/Govstack_scheduler_BB_APIs.json)
+{% endswagger %}
+
+{% swagger src=".gitbook/assets/Govstack_scheduler_BB_APIs.json" path="/event/modifications" method="put" %}
+[Govstack_scheduler_BB_APIs.json](.gitbook/assets/Govstack_scheduler_BB_APIs.json)
+{% endswagger %}
+
+{% swagger src=".gitbook/assets/Govstack_scheduler_BB_APIs.json" path="/event" method="delete" %}
+[Govstack_scheduler_BB_APIs.json](.gitbook/assets/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
 ## 8.2 User APIs
-
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-consent/main/api/consent-openapi.yaml" path="/service/individual/" method="post" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-consent/main/api/consent-openapi.yaml](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-consent/main/api/consent-openapi.yaml)
-{% endswagger %}
