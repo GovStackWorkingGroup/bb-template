@@ -1,0 +1,61 @@
+asyncapi: 3.0.0
+info:
+  title: Payments commands
+  version: 1.0.0
+channels:
+  submitPayment:
+    address: global.govstack.pay.v1.payment.submit
+    messages:
+      cmd:
+        $ref: '#/components/messages/SubmitPayment'
+      rejected:
+        $ref: '#/components/messages/PaymentRejected'
+operations:
+  onSubmitPayment:
+    action: receive
+    channel:
+      $ref: '#/channels/submitPayment'
+    messages:
+      - $ref: '#/channels/submitPayment/messages/cmd'
+components:
+  messages:
+    # 17.16: an HTTP-shaped problem with status is not a transport-neutral
+    # GovStackAsyncError and must not satisfy the rejection-message rule.
+    SubmitPayment:
+      payload:
+        type: object
+        required: [specversion, id, source, type, data]
+        properties:
+          specversion:
+            const: "1.0"
+          id:
+            type: string
+          source:
+            type: string
+          type:
+            type: string
+          data:
+            type: object
+      examples:
+        - name: sample
+          payload: {}
+    PaymentRejected:
+      contentType: application/json
+      correlationId:
+        location: '$message.header#/correlationId'
+      payload:
+        type: object
+        required: [type, title, status]
+        properties:
+          type:
+            type: string
+          title:
+            type: string
+          status:
+            type: integer
+      examples:
+        - name: sample
+          payload:
+            type: about:blank
+            title: Payment rejected
+            status: 422

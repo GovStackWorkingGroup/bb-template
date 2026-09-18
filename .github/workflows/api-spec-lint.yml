@@ -1,0 +1,68 @@
+# API spec lint
+#
+# Lints this repo's OpenAPI/AsyncAPI spec against the GovStack Cross-BB API
+# Design Guide, using the composite action in api-design-guide/linter/. This
+# workflow is inherited as-is by Building Block (BB) repos instantiated from
+# bb-template. Repositories without an API declare that explicitly in
+# api/index.yaml; empty legacy swagger placeholders are not conformant.
+#
+# The linter always runs in conformance mode. Deterministic contract failures
+# block, while heuristic findings remain advisory warnings by default.
+#
+# A BB repo may instead delete the inherited api-design-guide/linter/ folder
+# and pin the action from this template's repo directly, e.g.:
+#   uses: GovStackWorkingGroup/bb-template/api-design-guide/linter@<ref>
+name: API spec lint
+
+on:
+  pull_request:
+    paths:
+      - "api/**"
+      - "spec/**/*.md"
+      - "api-design-guide/**"
+      - ".github/workflows/api-spec-lint.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "api/**"
+      - "spec/**/*.md"
+      - "api-design-guide/**"
+      - ".github/workflows/api-spec-lint.yml"
+
+jobs:
+  linter-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Test bundled API linter and coverage contract
+        working-directory: api-design-guide/linter
+        env:
+          COVERAGE_ENFORCE: "1"
+        run: |
+          npm ci
+          npm test
+      - name: Validate the AsyncAPI golden and its external references
+        run: npx --yes @asyncapi/cli@6.0.2 validate api-design-guide/linter/tests/golden/asyncapi-golden.yaml
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Validate the OpenAPI golden and its external references
+        run: |
+          python -m pip install openapi-spec-validator==0.9.0
+          openapi-spec-validator api-design-guide/linter/tests/golden/openapi-golden.yaml
+      - name: Check generated rule index and guide links
+        run: |
+          python3 api-design-guide/tools/build_rules_index.py --check
+          python3 api-design-guide/tools/check_links.py
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Lint API spec
+        uses: ./api-design-guide/linter

@@ -14,7 +14,8 @@ and deployment from the `/spec` directory.
 ```sh
 README.md
 /spec # the markdown files which are used to build the specification in GitBook
-/api # the openapi specification
+/api # the API inventory, contracts, coverage mapping, and common components
+/api-design-guide # cross-BB API design guidance and validation tooling
 /test # the test plan and tests
   plan.md
 /examples # examples for deploying, configuring, and testing applications which implement the behaviors specified by this building block
@@ -30,6 +31,21 @@ README.md
   /application-b
   /application-c
 ```
+
+## API contracts
+
+The template repository itself does not define a Building Block API surface, so
+[`api/index.yaml`](api/index.yaml) declares `noApi`. When creating a Building
+Block specification, replace that declaration with an inventory of every
+OpenAPI, AsyncAPI, or normative protocol-standard surface. A Building Block
+that genuinely has no API keeps an explicit `noApi` declaration.
+
+When one or more API surfaces are declared, map active interface requirements
+to their operations, messages, or non-API verification in `api/coverage.yaml`.
+Follow the
+[GovStack Cross-BB API Design Guide](api-design-guide/README.md) and use its
+[validation instructions](api-design-guide/guides/validating-your-spec.md)
+before requesting review. Reusable schemas are available under `api/common/`.
 
 ## ORB setup
 

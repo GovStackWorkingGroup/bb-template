@@ -1,0 +1,25 @@
+asyncapi: 3.0.0
+info:
+  title: Registry events
+  version: 1.0.0
+channels:
+  global.govstack.reg.v1.person.created:
+    address: registrants/{tenant}/created
+    messages:
+      evt:
+        $ref: '#/components/messages/PersonCreated'
+operations:
+  onPersonCreated:
+    action: receive
+    channel:
+      $ref: '#/channels/global.govstack.reg.v1.person.created'
+    messages:
+      - $ref: '#/channels/global.govstack.reg.v1.person.created/messages/evt'
+components:
+  messages:
+    PersonCreated:
+      payload:
+        type: object
+      examples:
+        - name: sample
+          payload: {}

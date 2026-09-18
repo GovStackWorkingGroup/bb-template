@@ -1,0 +1,35 @@
+openapi: 3.1.0
+info:
+  title: Section 9.7 pass
+  version: 1.0.0
+paths: {}
+components:
+  schemas:
+    Status:
+      type: string
+      enum:
+        - ACTIVE
+        - PENDING_REVIEW
+    # §9.7 carve-outs: values whose form is fixed by another rule or an
+    # external standard keep their own casing and must not be flagged.
+    SigningAlgorithm:
+      type: string
+      enum: [ES256, EdDSA]
+    SigningCurve:
+      type: string
+      enum: [Ed25519, P-256]
+    MediaType:
+      type: string
+      enum: [application/json, application/problem+json]
+    ErrorCode:
+      type: string
+      enum: [global.govstack.identity.personNotFound]
+    EventType:
+      type: string
+      enum: [global.govstack.registration.record.created]
+    LanguageTag:
+      type: string
+      enum: [en, en-US, zh-Hans-CN]
+    CurrencyCode:
+      type: string
+      enum: [USD, EUR]

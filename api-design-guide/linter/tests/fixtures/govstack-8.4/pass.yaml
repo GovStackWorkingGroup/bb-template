@@ -1,0 +1,26 @@
+openapi: 3.1.0
+info:
+  title: Sample API
+  version: 1.0.0
+  description: Secured operation accepts W3C traceparent.
+  contact:
+    name: Sample BB Team
+    url: https://example.org/contact
+paths:
+  /items:
+    get:
+      operationId: listItems
+      summary: List items
+      description: List items.
+      tags: [items]
+      security:
+        - serviceAuth: []
+      parameters:
+        - name: traceparent
+          in: header
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK

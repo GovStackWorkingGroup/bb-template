@@ -1,0 +1,3 @@
+version: 1
+noApi: true
+reason: This repository is a template and does not define a Building Block API surface.

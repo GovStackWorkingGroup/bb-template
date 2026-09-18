@@ -1,0 +1,55 @@
+openapi: 3.1.0
+info:
+  title: Fixture API
+  version: 1.0.0
+  description: Fixture for govstack-11.4.
+  contact: {}
+paths:
+  /v1/foos:
+    post:
+      operationId: createFoo
+      summary: Create a foo
+      description: Create a foo.
+      tags: [foos]
+      requestBody:
+        content:
+          application/json:
+            schema: { type: object }
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema: { type: object }
+        '400':
+          description: Malformed request without field attribution
+          content:
+            application/problem+json:
+              schema:
+                type: object
+                required: [type, title, status, traceId]
+                properties:
+                  type: { type: string }
+                  title: { type: string }
+                  status: { type: integer }
+                  traceId: { type: string }
+        '422':
+          description: Field validation failed
+          content:
+            application/problem+json:
+              schema:
+                type: object
+                required: [type, title, status, traceId, errors]
+                properties:
+                  type: { type: string }
+                  title: { type: string }
+                  status: { type: integer }
+                  traceId: { type: string }
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      required: [pointer, message]
+                      properties:
+                        pointer: { type: string }
+                        message: { type: string }

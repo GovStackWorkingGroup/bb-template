@@ -1,0 +1,27 @@
+openapi: 3.1.0
+info:
+  title: Sample API
+  version: 1.0.0
+  description: A sample API whose /health declares no unhealthy status code.
+  contact:
+    name: Sample BB Team
+    url: https://example.org/contact
+paths:
+  /health:
+    get:
+      operationId: getHealth
+      summary: Liveness check
+      description: Returns basic liveness status for this BB.
+      tags: [Health]
+      security: []
+      responses:
+        # Guide 5.9 carries health in the status code, so a consumer told to
+        # read it needs a documented 503 as well as the 200.
+        "200":
+          description: Service is healthy.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  description: { type: string }

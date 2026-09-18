@@ -1,0 +1,33 @@
+openapi: 3.1.0
+info:
+  title: Sample API
+  version: 1.0.0
+  description: No X- prefixed headers; W3C Trace Context is used.
+  contact:
+    name: Sample BB Team
+    url: https://example.org/contact
+paths:
+  /items:
+    get:
+      operationId: listItems
+      summary: List items
+      description: List items.
+      tags: [items]
+      parameters:
+        - name: traceparent
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: Custom-Trace
+          in: header
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          headers:
+            Total-Count:
+              schema:
+                type: integer

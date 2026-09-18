@@ -1,0 +1,59 @@
+# Rules for §15 asynchronous operations — generated from the guide.
+#
+# Implements 15.1 and 15.5, plus the 15.4 polling-path proxy. Operation
+# resource fields and lifecycle states are owned and documented by each BB.
+# Source text: ../../rules.yaml. Severity/formats per ../README.md#rule-naming-and-severities.
+functionsDir: "../functions"
+functions:
+  - responseHeaderRequired
+  - s15-operationsPolling
+  - s15-cancelPath
+rules:
+  # 15.1 [M+R] — operations that cannot complete synchronously MUST return 202
+  # with a Location header. Mechanically: every 202 response declares a Location
+  # header. That the Location "points to an Operation resource" is a runtime
+  # value and is not verified here.
+  govstack-15.1:
+    description: "every 202 response must declare a Location header (guide 15.1, [M+R])."
+    message: "[15.1][M+R] {{error}}"
+    documentationUrl: https://github.com/GovStackWorkingGroup/bb-template/blob/main/api-design-guide/part-d/15-asynchronous-operations.md#151-202-with-operation-location
+    severity: error
+    formats: [oas3_1]
+    given: "$.paths[*][get,put,post,delete,patch].responses"
+    then:
+      function: responseHeaderRequired
+      functionOptions:
+        status: "202"
+        headers: [Location]
+
+  # 15.4 [M+R] — PROXY (bucket B), notched to warn.
+  # Verifies: when the Operations pattern is used (an Operation schema or an
+  # /operations/ path exists), a canonical GET /v{N}/operations/{operationId}
+  # poll endpoint is declared.
+  # Does NOT verify: whether asynchronous behaviour is actually needed, or the
+  # response shape or lifecycle semantics of the poll endpoint, which are
+  # documented locally by the BB.
+  govstack-15.4:
+    description: "a canonical GET /v{N}/operations/{operationId} poll endpoint must exist when Operations are used (guide 15.4, [M+R], proxy)."
+    message: "[15.4][M+R] {{error}}"
+    documentationUrl: https://github.com/GovStackWorkingGroup/bb-template/blob/main/api-design-guide/part-d/15-asynchronous-operations.md#154-polling-the-operation-resource
+    severity: warn
+    formats: [oas3_1]
+    given: $
+    then:
+      function: s15-operationsPolling
+
+  # 15.5 [M+R] — cancellation, when supported, MUST be
+  # POST /v{N}/operations/{operationId}/cancel. Any Operation-cancellation path
+  # (a `.../operations/.../cancel` path) that is not the canonical shape, or that
+  # does not declare a POST, is flagged. Domain-level cancels not under
+  # /operations/ are out of scope.
+  govstack-15.5:
+    description: "Operation cancellation should use POST /v{N}/operations/{operationId}/cancel (guide 15.5, [M+R])."
+    message: "[15.5][M+R] {{error}}"
+    documentationUrl: https://github.com/GovStackWorkingGroup/bb-template/blob/main/api-design-guide/part-d/15-asynchronous-operations.md#155-cancellation-via-cancel-sub-resource
+    severity: warn
+    formats: [oas3_1]
+    given: $.paths
+    then:
+      function: s15-cancelPath

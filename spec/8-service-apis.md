@@ -5,27 +5,21 @@ This section provides a reference for APIs that should be implemented by this Bu
 The [GovStack non-functional requirements document](https://govstack.gitbook.io/specification/architecture-and-nonfunctional-requirements/6-onboarding) provides additional information on how 'adaptors' may be used to translate an existing API to the patterns described here. This section also provides guidance on how candidate products are tested and how GovStack validates a product's API against the API specifications defined here.&#x20;
 
 {% hint style="success" %}
-All APIs will be defined using the OpenAPI (Swagger) standard. The API definitions will be hosted outside of this document. This section may provide a brief description of required APIs.&#x20;
+Keep the canonical interface inventory in [`api/index.yaml`](../api/index.yaml). Use OpenAPI for synchronous HTTP APIs, AsyncAPI for event-driven APIs, or a normative protocol-standard declaration where creating a synthetic OpenAPI document would be misleading. A Building Block with no API surface must declare that explicitly.
 
-This section will primarily contain links to the GitHub repository for OpenAPI definition (yaml) files as well as to a website hosted by GovStack that provides a live API documentation portal.
+When one or more API surfaces are declared, map each active interface requirement to its operations, messages, or non-API verification in `api/coverage.yaml`. Follow the [GovStack Cross-BB API Design Guide](../api-design-guide/README.md) for conventions and validation.
 
 Note that APIs should be grouped by functional area (from sections 4 and 6) where appropriate.
 
-OpenAPI links to the GitHub repository can be made in an interactive way using the GitBook OpenAPI widget, linking to the GitHub repo version of the .yaml file, remembering to link to the “raw” url. An example from the Registries BB is shown below and can be replaced.
+This section may link to rendered API documentation, but do not embed a second copy of a canonical contract in the GitBook assets.
+{% endhint %}
+
+{% hint style="info" %}
+**Optional runtime catalogue discovery.** A deployment that publishes an API catalogue can use [RFC 9727, *api-catalog: A Well-Known URI and Link Relation to Help Discovery of APIs*](https://www.rfc-editor.org/rfc/rfc9727.html). Its `/.well-known/api-catalog` resource can direct clients to the deployment's canonical catalogue at any stable URI, allowing a deployment-specific catalogue path without requiring clients to know that path in advance.
+
+This runtime discovery mechanism does not replace the canonical source contracts declared in `api/index.yaml`. An RFC 9727 implementation provides the required `application/linkset+json` representation and can make additional catalogue formats available through content negotiation.
 {% endhint %}
 
 ## 8.1 Administrative APIs
-
-{% swagger src=".gitbook/assets/Govstack_scheduler_BB_APIs.json" path="/event/new" method="post" %}
-[Govstack_scheduler_BB_APIs.json](.gitbook/assets/Govstack_scheduler_BB_APIs.json)
-{% endswagger %}
-
-{% swagger src=".gitbook/assets/Govstack_scheduler_BB_APIs.json" path="/event/modifications" method="put" %}
-[Govstack_scheduler_BB_APIs.json](.gitbook/assets/Govstack_scheduler_BB_APIs.json)
-{% endswagger %}
-
-{% swagger src=".gitbook/assets/Govstack_scheduler_BB_APIs.json" path="/event" method="delete" %}
-[Govstack_scheduler_BB_APIs.json](.gitbook/assets/Govstack_scheduler_BB_APIs.json)
-{% endswagger %}
 
 ## 8.2 User APIs

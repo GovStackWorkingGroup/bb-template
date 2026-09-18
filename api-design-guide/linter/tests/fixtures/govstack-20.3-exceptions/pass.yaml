@@ -1,0 +1,27 @@
+openapi: 3.0.3
+info:
+  title: Sample API
+  version: 1.0.0
+  description: Fixture for govstack-20.3-exceptions — exceptions entries are objects referencing an approved exception record.
+  contact:
+    name: Sample BB Team
+    url: https://example.org/contact
+  x-govstack-api-guide:
+    version: 0.2.0-draft
+    rulesetVersion: 0.2.0-draft
+    exceptions:
+      - rule: "9.3"
+        scope: /components/schemas/Legacy/properties/enabled
+        rationale: Temporary compatibility exception for a reviewed legacy boolean field.
+        record: https://example.org/exceptions/RULE-9.3
+        reviewedBy: API Working Group
+        reviewedAt: "2026-07-10"
+        expiresAt: "2099-12-31"
+      - rule: "11.2"
+        scope: /paths/~1v1~1things/get/responses/400
+        rationale: Temporary compatibility exception for a reviewed problem-details field.
+        record: https://example.org/exceptions/RULE-11.2
+        reviewedBy: API Working Group
+        reviewedAt: "2026-07-10"
+        expiresAt: "2099-12-31"
+paths: {}
