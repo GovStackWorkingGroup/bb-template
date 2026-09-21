@@ -1,0 +1,6 @@
+---
+# Should only include this version's authors 
+authors:
+  - name: <Name>
+    roles: [Author, Editor, Contributor]
+    uri: govstack:person:<name> # see meta-specs for the format of the URI

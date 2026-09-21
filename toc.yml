@@ -1,0 +1,14 @@
+---
+toc:
+  introduction:
+    - foreword.md
+    - overview.md
+    - scope.md
+    - references.yml
+    - terminology.yml
+  requirements:
+    - functionality-name
+  - resources:
+    - api/
+    - test/
+    - skills/
