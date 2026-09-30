@@ -1,9 +1,10 @@
 ---
-name: <Name> <Publication Type> Specification
-description: <one sentence description of the specification>
+name: <Name>
+abstract: |
+  <One paragraph description of the specification>
 url: https://specs.govstack.global/<name>/
 repository: https://github.com/govStackWorkingGroup/bb-<name>
-publication_id: govstack:spec:<type>:<name>
+urn: govstack:spec:<type>:<name>
 working_group: govstack:wg:<name>
 versions:
   - version: 1.0
