@@ -2,8 +2,11 @@
 title: Overview
 ---
 <!-- 
+TODO: Revise and reduce. Adjust to GovStack.
+## Specification Overview
 
-## Product Perspective
+{% abstract %}
+
 
 From ISO/IEC/IEEE 29148:2018, 9.6.4 Product perspective
 

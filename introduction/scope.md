@@ -1,15 +1,17 @@
 ---
 title: Scope
 ---
-<!-- From ISO/IEC/IEEE 29148:2018, 9.6 Software requirements specification (SRS) content, 9.6.3 Scope
+<!-- 
+TODO: Revise. Adjust to GovStack.
+## Abstract
 
-Describe the scope of the software under consideration by:
-a) identifying the software product(s) to be produced by name (e.g., Host DBMS, Report Generator, etc.);
-b) explaining what the software product(s) will do;
-c) describing the application of the software being specified, including relevant benefits, objectives
-and goals; and
-d) being consistent with similar statements in higher-level specifications (e.g., a system requirements
-specification), if they exist.
+## Specification Scope
+
+- List of user journeys covered
+
+
+## Product Overview
+- Diagram of functionalities
 
 Scope problems can be minimized by establishing boundary conditions for the system, software system, element or service with the stakeholders before defining the system or software requirements.
 
