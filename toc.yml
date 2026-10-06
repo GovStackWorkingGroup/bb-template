@@ -7,8 +7,7 @@ toc:
     - references.yml
     - terminology.yml
   requirements:
-    - functionality-name
+    - functionality-name.md
   resources:
     - api/
     - test/
-    - skills/
