@@ -1,0 +1,7 @@
+---
+# Should only include the major version's authors 
+authors:
+  - name: <Name>
+    roles: [Author, Editor, Contributor]
+    urn: govstack:person:<name> # see govstack-process for the format of the URN
+    url: # see govstack-process for more information on how to link to a person's profile
