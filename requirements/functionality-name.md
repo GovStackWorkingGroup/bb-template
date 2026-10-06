@@ -2,14 +2,16 @@
 title: functionality name
 capability: |
    <description from the business PoV>
+cardinality: ALL # Options: [ALL, ONE_OF, ONE_OR_MORE]
 requirements:
   - id: '1'
-    level: RECOMMENDED
-    type: # Functional, Data Exchange
-    observability:
-    mutability:
+    status: DRAFT # [DRAFT, WITHDRAWN, CANDIDATE, ACCEPTED, PUBLISHED, DEPRECATED]
+    level: RECOMMENDED # [RECOMMENDED, REQUIRED]
+    type: # [FUNCTIONAL, WEBSERVICE, INTERFACE]
+    observability: # [OBSERVABLE, AUDITABLE]
+    mutability: # [IMMUTABLE, EXTENSIBLE]
     statement: <The requirement statement is a single sentence that describes the requirement in a clear and concise manner.>
-    content: >
+    documentation: >
       This is the text description of the requirement and can span multiple
       lines and even contain *markdown* _formatting_.
     api_operation_id: 
