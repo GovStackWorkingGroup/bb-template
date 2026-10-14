@@ -1,0 +1,11 @@
+# Compiles this publication with the central GovStack compiler.
+# On a pull request it only checks. On a published release it checks, renders the book and
+# writes to the GovStack Registry. See the GovStack Process, chapter Compiling Publications.
+name: Compile
+on:
+  pull_request:
+  release:
+    types: [published]
+jobs:
+  compile:
+    uses: GovStackWorkingGroup/publications-compiler/.github/workflows/compile.yml@v1

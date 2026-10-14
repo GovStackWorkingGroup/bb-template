@@ -1,37 +1,49 @@
 # GovStack Building Block Template
 
-This template is intended to be used by the various GovStack building block
-repos. Each building block repo will have at least 4 main sections, outlined in
-the directory structure below.
-
-## Gitbook and the published "Building Block Specifications" document
-
-Note that pushes to the `main` branch will automatically trigger a Gitbook build
-and deployment from the `/spec` directory.
-
 ## Repo Structure
 
 ```sh
-README.md
-/spec # the markdown files which are used to build the specification in GitBook
-/api # the openapi specification
-/test # the test plan and tests
-  plan.md
-/examples # examples for deploying, configuring, and testing applications which implement the behaviors specified by this building block
-  /application-a
-    README.md # instructions for deployment/testing
-    docker-compose.yaml # example deployment file
-      db
-      web
-      adaptor
-      security-server
-    Caddyfile # example config for "adaptor"
-    Dockerfile # dockerfile to build "adaptor"
-  /application-b
-  /application-c
+.
+├── ADR
+├── assets
+├── authors.yml
+├── introduction
+│   ├── overview.md
+│   ├── purpose.md
+│   ├── references.yml
+│   ├── scope.md
+│   └── terminology.yml
+├── LICENSE
+├── metadata.yml
+├── README.md
+├── requirements
+│   ├── functionality-name.md
+│   ├── functionality-name.yml
+│   └── functions.md
+├── resources
+│   ├── api
+│   │   ├── swagger.json
+│   │   └── swagger.yaml
+│   └── test
+│       ├── examples
+│       │   ├── exampleApp
+│       │   │   ├── docker-compose.yml
+│       │   │   ├── Dockerfile
+│       │   │   ├── entrypoint.sh
+│       │   │   ├── example-app-data.json
+│       │   │   ├── README.md
+│       │   │   └── test_entrypoint.sh
+│       │   ├── README.md
+│       │   └── someApp
+│       │       ├── Caddyfile
+│       │       ├── docker-compose.yaml
+│       │       └── Dockerfile
+│       └── openAPI
+│           ├── docker
+│           │   ├── Dockerfile
+│           │   └── entrypoint.sh
+│           ├── docker-compose.yaml
+│           └── test_entrypoint.sh
+└── toc.yml
 ```
 
-## ORB setup
-
-Documentation for ORB setup is available here:
-[ORB setup instruction](https://govstack-global.atlassian.net/wiki/spaces/GH/pages/191692823/ORB+setup+instruction)
