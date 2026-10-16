@@ -1,0 +1,70 @@
+name: Architecture Decision Record (ADR)
+description: Propose a reference architecture or raise a decision that affects GovStack architecture as a whole
+title: "[<name>][ADR]: "
+labels: ["ADR", "bb-<name>"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for decisions that reach beyond this Building Block: reference architectures, cross-cutting patterns, or anything that pertains to the domain of GovStack architecture.
+
+        If the change only affects this Building Block's specification, use the **Technical Decision Record (TDR)** template instead.
+  - type: checkboxes
+    id: opening-questions
+    attributes:
+      label: Opening questions
+      options:
+        - label: I have checked the [current list of issues](../issues) and the existing ADRs and confirm this has not already been proposed
+          required: true
+        - label: I agree to follow the [GovStack Code of Conduct](https://govstack.global/coc)
+          required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Type of proposal
+      options:
+        - Reference architecture
+        - Cross-cutting architectural pattern or principle
+        - Change to an existing ADR
+        - Other architecture-wide decision
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: What problem or situation calls for this decision? Include any constraints and the forces at play.
+    validations:
+      required: true
+  - type: textarea
+    id: decision
+    attributes:
+      label: Proposed decision
+      description: What do you propose? State it plainly, then add whatever detail (diagrams, examples) is needed.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: What other options were evaluated, and why were they not chosen?
+  - type: textarea
+    id: consequences
+    attributes:
+      label: Consequences
+      description: What becomes easier or harder as a result? Note any trade-offs, risks, or follow-up work.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Affected Building Blocks and specifications
+      description: List the Building Blocks, cross-functional requirements, or other specifications this decision would affect.
+      placeholder: e.g. Identity BB, Information Mediator BB, Architecture & Nonfunctional Requirements
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: References
+      description: Links to related issues, ADRs, discussions, standards, or prior art.

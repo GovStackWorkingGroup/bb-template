@@ -1,5 +1,7 @@
 # GovStack Building Block Template
 
+See [GovStack Process](https://github.com/GovStackWorkingGroup/govstack-process) and [Specification Framework](https://github.com/GovStackWorkingGroup/specification-framework).
+
 ## Repo Structure
 
 ```sh
@@ -9,7 +11,6 @@
 ├── authors.yml
 ├── introduction
 │   ├── overview.md
-│   ├── purpose.md
 │   ├── references.yml
 │   ├── scope.md
 │   └── terminology.yml
@@ -18,8 +19,6 @@
 ├── README.md
 ├── requirements
 │   ├── functionality-name.md
-│   ├── functionality-name.yml
-│   └── functions.md
 ├── resources
 │   ├── api
 │   │   ├── swagger.json
