@@ -23,7 +23,7 @@ Answer four questions in one to three paragraphs:
 3. Which capabilities does it provide? Name each as a noun phrase ("Credential Storage", not "Stores credentials"), stating what, never how.
 4. What would go wrong if every government and vendor built this component to their own design? Use one or more of: interoperability, replaceability, choice, assurance.
 
-Every capability named here must be realised by at least one functionality in the Description. If none of the four arguments in question 4 applies, the component may not need a GovStack specification.
+Declare every capability named here in metadata.yml, under capabilities, with the same title. Every capability must be realised by at least one functionality in the Description, through the realises field of the functionality's file. When a capability is realised only by an extension, say so: a reader must not assume every conformant solution provides it. If none of the four arguments in question 4 applies, the component may not need a GovStack specification.
 -->
 
 The <Building Block name> Building Block exists so that <beneficiary> can <outcome>.
@@ -39,6 +39,7 @@ Place the Building Block in the systems it operates in. Name roles, not products
 
 - The GovStack Architecture, and the cross-functional requirements the Building Block inherits
 - Each Domain Reference Architecture in which it performs a role, and the role. If none exists for the domain, say so and describe the domain context in the Building Block's own terms
+- Which part of this specification performs each role. The obligations towards a role are in this specification, never in the reference architecture. When they are in an extension, say that only a solution claiming the extension performs the role in full
 - The other roles in those systems, and which of them it exchanges information with
 - The Building Blocks it commonly works with, and for what
 - Whether it is a foundational or a feature Building Block, when that helps the reader
@@ -93,20 +94,43 @@ The <Building Block name> is assessed as a black box, through its interfaces. <W
 
 ### Functionalities
 
-<!-- One row per functionality. Each has its own file in requirements/, and the name here matches that file's title exactly. -->
+<!-- One row per functionality. Each has its own file in requirements/, and the name here matches that file's title exactly. Realises names the capabilities from Value the functionality realises, by title, and matches the realises field of the file. Description repeats the description field of the file. Conformance is "Core", or "<Extension> extension", and matches the conformance and extension fields of the file. See the Specification Framework, chapter "Functionalities and Extensions". -->
 
-| Functionality | Description | Requirements |
-|---|---|---|
-| <Functionality name> | <One sentence> | `requirements/<functionality-name>.md` |
-| <Functionality name> | <One sentence> | `requirements/<functionality-name>.md` |
+| Functionality | Realises | Conformance | Description | Requirements |
+|---|---|---|---|---|
+| <Functionality name> | <Capability> | Core | <One sentence> | `requirements/<functionality-name>.md` |
+| <Functionality name> | <Capability>, <Capability> | <Extension> extension | <One sentence> | `requirements/<functionality-name>.md` |
 
-<!-- Explain why these functionalities were chosen: which capability from Value each realises, and which functionalities a reader might expect but that were placed elsewhere. The second half becomes the "Not covered" list in scope.md. -->
+<!-- Explain why these functionalities were chosen. Where several functionalities realise one capability, say how they divide it, and when some of them are in an extension, what a solution claiming it provides beyond the core. Then name the functionalities a reader might expect but that were placed elsewhere: that part becomes the "Not covered" list in scope.md. -->
 
-<Functionality name> realises <Capability>. <Functionality name> realises <Capability>.
+<Capability> is realised by <Functionality name> and <Functionality name>, which <how they divide it>. <What a solution claiming an extension adds to the capability, if any.>
 
 <Functionalities a reader might expect here, and where each was placed instead.>
 
-<!-- Functionality map: functionalities inside the boundary, actors outside it, and how each actor reaches each functionality. A functionality no actor reaches, directly or through another functionality, is probably an internal mechanism. -->
+#### Core and extensions
+
+<!--
+If the specification has no extensions, replace this section with one sentence: "Every functionality is part of the core." and delete the table.
+
+Otherwise:
+- Explain the core first, and why it stands alone: what a solution that meets only the core can do, and why that makes it an instance of the Building Block
+- One row per extension, matching the extensions declared in metadata.yml, with the same titles
+- Adds: what a solution claiming the extension can do that the core alone cannot. Write it for a buyer deciding whether to require it
+- Role served: the role the Building Block performs through the extension, and the Domain Reference Architecture that describes it. Leave empty if none
+- Requires: other extensions a solution must also claim
+- Explain why each extension is not core: some conformant products legitimately lack it, it is an obligation towards a domain role not every deployment has, or it depends on infrastructure not every deployment has
+- Say which combinations you expect buyers to ask for
+-->
+
+The core is <what a solution that meets only the core can do, and why that is enough to make it an instance of the Building Block>.
+
+| Extension | Adds | Functionalities | Role served | Requires |
+|---|---|---|---|---|
+| <Extension> | <What a solution claiming it can do that the core alone cannot> | <Functionality name> | <role>, towards <role>, in `<govstack:ra:identifier>` | <Extension, or empty> |
+
+<Why each extension is not core, and which combinations buyers are expected to ask for.>
+
+<!-- Functionality map: functionalities inside the boundary, actors outside it, and how each actor reaches each functionality. Draw each extension as a group inside the boundary; without extensions, drop the groups. A functionality no actor reaches, directly or through another functionality, is probably an internal mechanism. -->
 
 ```mermaid
 flowchart LR
@@ -115,8 +139,12 @@ flowchart LR
 
   subgraph SUT["<Building Block name> Building Block (system under test)"]
     direction TB
-    F1["<Functionality name>"]
-    F2["<Functionality name>"]
+    subgraph Core["Core"]
+      F1["<Functionality name>"]
+    end
+    subgraph Ext1["<Extension> extension"]
+      F2["<Functionality name>"]
+    end
     F1 --> F2
   end
 
@@ -135,6 +163,7 @@ List every actor the Building Block interacts with: people, organisations, other
 - Specified where: the publication that defines the actor's behaviour (a Domain Reference Architecture, another Building Block specification, an external standard, or "Not specified"). An actor outside the boundary is never specified by this document, only its interface with the Building Block
 - Use the role names of the Domain Reference Architecture where one exists
 - Every actor marked Outside reappears in "Not covered" in scope.md, with its owner
+- When an actor reaches the Building Block only through an extension, name the extension: "<Functionality name> (<Extension> extension)"
 -->
 
 | Actor | Kind | Boundary | Reaches the Building Block through | Specified where |
@@ -146,11 +175,12 @@ List every actor the Building Block interacts with: people, organisations, other
 <!--
 List every interface that crosses the boundary of the system under test.
 
-- Type: Service API, Consumed API, Protocol, Event, User interface or Device
-- Every interface listed is realised by at least one requirement
+- Type: Service API, Consumed API, Protocol, Event, User interface, Device or File
+- Every interface listed is realised by at least one requirement whose interaction field matches its type (SERVICE_API, CONSUMED_API, PROTOCOL, EVENT, USER_INTERFACE, DEVICE, FILE), and every requirement that is not INTERNAL realises an interface listed here
 - Do not list interfaces inherited from the cross-functional requirements (logging, monitoring, deployment), unless this Building Block adds to the inherited contract
 - Record the logical counterpart, not the Information Mediator, unless the Building Block depends on a mediation feature specifically
 - Name the contract, not the technology
+- A protocol defined for a domain is usually realised by an extension functionality. If a core functionality realises it, explain in "Core and extensions" why every conformant solution needs it
 -->
 
 | Interface | Counterpart | Direction | Functionality | Type | Contract defined in |
