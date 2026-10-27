@@ -6,6 +6,23 @@ url: https://specs.govstack.global/<name>/
 repository: https://github.com/govStackWorkingGroup/bb-<name>
 urn: govstack:spec:<type>:<name>
 owner_group: govstack:team:editorial-committee
+# Capabilities: the outcomes the Building Block makes possible, named in the Purpose of
+# introduction/overview.md. Each functionality in requirements/ lists the ids it realises.
+# See the Specification Framework, chapter "Functionalities and Extensions", section "Capabilities".
+capabilities:
+  - id: <capability-id> # unique in this specification, never reused
+    title: <Capability name> # a noun phrase, as in the Purpose
+    description: <The outcome, in one sentence, from the point of view of the beneficiary>
+# Extensions: named sets of functionalities a solution may claim in addition to the core.
+# Delete this block if the specification has none. See the Specification Framework,
+# chapter "Functionalities and Extensions".
+extensions:
+  - id: <extension-id> # unique in this specification, never reused
+    title: <Extension name>
+    description: <What a solution claiming it can do that the core alone cannot>
+    role: <Role>, towards <Role> # optional
+    reference_architecture: <govstack:ra:identifier> # optional
+    requires: [] # ids of other extensions
 versions:
   - version: 1.0
     url_suffix: /bb-<name>/1.0

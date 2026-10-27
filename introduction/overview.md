@@ -1,202 +1,188 @@
 ---
 title: Overview
 ---
-<!-- 
-TODO: Revise and reduce. Adjust to GovStack.
-## Specification Overview
 
-{% abstract %}
+<!--
+How to fill this file: see the Specification Framework, chapter "Introductory Chapters" (chapters/introductory_chapters.md). A complete worked example is in resources/examples/wallet/introduction/overview.md of the same repository.
 
+The overview describes the Building Block. Its content comes from the Working Group's preparatory work: it publishes the result of that work, it does not derive it. If a section cannot be filled, the preparatory work is probably incomplete.
 
-From ISO/IEC/IEEE 29148:2018, 9.6.4 Product perspective
-
-Define the system's relationship to other related products.
-If the product is an element of a larger system, relate the requirements of that larger system to the
-functionality of the product covered by the SRS.
-
-If the product is an element of a larger system, identify the interfaces between the product covered by
-the SRS and the larger system of which the product is an element.
-
-Consider a block diagram showing the major elements of the larger system, interconnections and
-external interfaces.
-
-Describe how the software operates within the following constraints:
-
-### system interfaces
-List each system interface and identify the functionality of the software to accomplish the system requirement and the interface description to match the system.
-
-Example of system interfaces:
-
-| System Interface  | Type      | Interaction description                     |
-| ---               | ---       | ---                                         |
-| Web Browser       | Software  | Users can access via web application        |
-| Mobile devices    | Software  | Users can access mobile application         |
-| Biometric readers | Hardware  | BB can interact with biometric readers      |
-| RFID card         | Hardware  | BB can read and write RFID cards            |
-| Weather API       | Service   | BB can read from Weather API                |
-| GTFS Server       | Service   | BB can read and write to GTFS Server        |
-| Credential Issuer | Service   | BB has workflows with credential issuers    |
-| AI Agents         | Service   | BB has MCP interface                        |
-| Cli               | Software  | BB can interact with cli through port 8787  |
-
-
-### user interfaces: Specify the logical characteristics of each interface between the software product and its users. 
-
-Note: A style guide for the user interface can provide consistent rules for organization, coding and interaction of the user with the system.
-
-### hardware interfaces: Specify the logical characteristics of each interface between the software product and the hardware
-elements of the system. This includes configuration characteristics (number of ports, instruction sets,
-etc.). It also covers such matters as what devices are to be supported, how they are to be supported, and
-protocols. For example, terminal support may specify full-screen support as opposed to line-by-line
-support.
-### software interfaces:
-Specify the use of other required software products (e.g., a data management system, an operating
-system or a mathematical package), and interfaces with other application systems (e.g., the linkage
-between an accounts receivable system and a general ledger system).
-For each required software product, specify:
-- name;
-- mnemonic;
-- specification number;
-- version number; and
-- source. NOTE It is acceptable to specify required platforms or operating systems, but rarely feasible to require a specific version. Typically, a version number most recent version or any currently maintain version can be specified for software.
-For each interface, specify:
-a) discussion of the purpose of the interfacing software as related to this software product;
-b) definition of the interface in terms of message content and format. It is not necessary to detail any well-documented interface, but a reference to the document defining the interface is required.
-### communications interfaces;
-Specify the various interfaces to communications such as local network protocols.
-
-### memory;
-
-Specify any applicable characteristics and limits on primary and secondary memory.
-
-### operations;
-
-Specify the normal and special operations required by the user such as:
-a)the various modes of operations in the user organization (e.g., user-initiated operations);
-c)data processing support functions; and
-b) periods of interactive operations and periods of unattended operations;
-d) backup and recovery operations.
-
-Note: This is sometimes specified as part of the User Interfaces section.
-
-### site adaptation requirements; and
-
-The site adaptation requirements include:
-a) definition of the requirements for any data or initialization sequences that are specific to a given
-site, mission or operational mode (e.g., grid values, safety limits, etc.);
-b) specification of the site or mission-related features that should be modified to adapt the software
-to a particular installation.
-
-### interfaces with services.
-
-Specify interactions with services, e.g., Software as a Service (SaaS) or cloud services.
-
-## Product functions
-
-Provide a summary of the major functions that the software will perform. For example, an SRS for an
-accounting program may use this part to address customer account maintenance, customer statement
-and invoice preparation without mentioning the vast amount of detail that each of those functions
-requires.
-
-Sometimes the function summary that is necessary for this part can be taken directly from the section
-of the higher-level specification (if one exists) that allocates particular functions to the software
-product.
-Use cases, user stories and scenarios are also used to describe product functions.
-Note that for the sake of clarity:
-a) the product functions should be organized in a way that makes the list of functions understandable
-to the acquirer or to anyone else reading the document for the first time.
-b) textual or graphical methods can be used to show the different functions and their relationships.
-Such a diagram is not intended to show a design of a product, but simply shows the logical
-relationships among variables.
-
-9.6.12 Functions
-Define the fundamental actions that have to take place in the software in accepting and processing the
-inputs and in processing and generating the outputs, including:
-a) validity checks on the inputs;
-b) exact sequence of operations;
-c) responses to abnormal situations, including:
-  1) overflow;
-  2) communication facilities;
-  3) hardware faults and failures; and
-  4) error handling and recovery;
-d) effect of parameters;
-e) relationship of outputs to inputs, including:
-  1) input/output sequences; and
-  2) formulas for input to output conversion.
-It may be appropriate to partition the functional requirements into sub-functions or sub-processes.
-This does not imply that the software design will also be partitioned that way.
-
-## User characteristics
-
-Describe those general characteristics of the intended groups of users of the product including
-characteristics that may influence usability, such as educational level, experience, disabilities and
-technical expertise. This description should not state specific requirements, but rather should state the
-reasons why certain specific requirements are later specified in specific requirements in 9.6.9.
-NOTE 1 Where appropriate, the user characteristics of the SyRS and SRS are consistent.
-
-NOTE 2 For additional information on context of use and user needs, see ISO/IEC 25063 and ISO/IEC 25064.
-
-## Limitations
-
-Provide a general description of any other items that will limit the supplier's options, including:
-a)regulatory requirements and policies;
-b) hardware limitations (e.g., signal timing requirements);
-c) interfaces to other applications;
-d) parallel operation;
-e) audit functions;
-f) control functions;
-g) higher-order language requirements;
-h) signal handshake protocols (e.g., XON-XOFF, ACK-NACK);
-i) quality requirements (e.g., reliability);
-j) criticality of the application;
-k) safety and security considerations;
-l) physical/mental considerations; and
-m) limitations that are sourced from other systems, including real-time requirements from the
-controlled system through interfaces.
-
-## Assumptions and dependencies
-
-List each of the factors that affect the requirements stated in the SRS. These factors are not design
-constraints on the software but any changes to these factors can affect the requirements in the SRS.
-For example, an assumption may be that a specific operating system will be available on the hardware
-designated for the software product. If, in fact, the operating system is not available, the SRS would
-have to change accordingly.
-
-## Apportioning of requirements
-
-Apportion the software requirements to software elements. For requirements that will require
-implementation over multiple software elements, or when allocation to a software element is initially
-undefined, this should be so stated. A cross-reference table by function and software element should be
-used to summarize the apportionments.
-Identify requirements that may be delayed until future versions of the system (e.g., blocks and/or
-increments).
-
-## Specified requirements
-
-Specify the software system requirements to a level of detail sufficient for software design, development
-and verification of the software increment or release in process.
-The requirements should:
-a)be stated in conformance with all the characteristics described in 5.2 of this document;
-c)be uniquely identifiable;
-b) be cross-referenced to earlier versions or related documents;
-d) describe every input (stimulus) into the software system, every output (response) from the
-software system, and all functions performed by the software system in response to an input or in
-support of an output.
-
-## External interfaces
-
-Define all inputs into and outputs from the software system. The description should complement the
-interface descriptions in 9.6.4.1 through 9.6.4.5, and should not repeat information there.
-Each interface defined should include the following content:
-a) name of item;
-b) description of purpose;
-c) source of input or destination of output;
-d) valid range, accuracy and/or tolerance;
-e) units of measure;
-f) timing;
-g) relationships to other inputs/outputs;
-h) data formats;
-i) command formats; and
-j) data items or information included in the input and output.
-
+Replace every <placeholder> and delete every comment before publication. Do not write requirements, product names or vendor names in this file.
 -->
+
+# Overview
+
+## Purpose
+
+### Value
+
+<!--
+Answer four questions in one to three paragraphs:
+1. What problem does this Building Block solve, and for whom?
+2. What can a government do with it that it could not do before?
+3. Which capabilities does it provide? Name each as a noun phrase ("Credential Storage", not "Stores credentials"), stating what, never how.
+4. What would go wrong if every government and vendor built this component to their own design? Use one or more of: interoperability, replaceability, choice, assurance.
+
+Declare every capability named here in metadata.yml, under capabilities, with the same title. Every capability must be realised by at least one functionality in the Description, through the realises field of the functionality's file. When a capability is realised only by an extension, say so: a reader must not assume every conformant solution provides it. If none of the four arguments in question 4 applies, the component may not need a GovStack specification.
+-->
+
+The <Building Block name> Building Block exists so that <beneficiary> can <outcome>.
+
+Today <the problem, stated plainly>. The <Building Block name> provides **<Capability>**, **<Capability>** and **<Capability>**, so that <the changed state>.
+
+A common specification matters here because <the interoperability, replaceability, choice or assurance argument, specific to this Building Block>.
+
+### Place in larger systems
+
+<!--
+Place the Building Block in the systems it operates in. Name roles, not products. Place the reference architecture for the reader; do not import its content.
+
+- The GovStack Architecture, and the cross-functional requirements the Building Block inherits
+- Each Domain Reference Architecture in which it performs a role, and the role. If none exists for the domain, say so and describe the domain context in the Building Block's own terms
+- Which part of this specification performs each role. The obligations towards a role are in this specification, never in the reference architecture. When they are in an extension, say that only a solution claiming the extension performs the role in full
+- The other roles in those systems, and which of them it exchanges information with
+- The Building Blocks it commonly works with, and for what
+- Whether it is a foundational or a feature Building Block, when that helps the reader
+-->
+
+The <Building Block name> operates within the GovStack Architecture, and every conformant solution meets the GovStack cross-functional requirements.
+
+In the <Domain Reference Architecture name> (`<govstack:ra:identifier>`) the <Building Block name> performs the **<role>** role. <The other roles in that system, what each does, and which of them exchange information with this Building Block.>
+
+The <Building Block name> is a <foundational | feature> Building Block. It commonly works with:
+
+- the **<Building Block>** Building Block, <for what>;
+- the **<Building Block>** Building Block, <for what>.
+
+<!-- Context diagram: the Building Block as one role among the others, with the main exchanges. Draw roles, not deployments, and keep the Building Block's internals out. Draw one diagram per Domain Reference Architecture. -->
+
+```mermaid
+flowchart LR
+  subgraph RA["<Domain Reference Architecture> (<govstack:ra:identifier>)"]
+    direction LR
+    RoleA["<Role>"]
+    BB["<Role><br/><b><Building Block name> Building Block</b>"]
+    RoleB["<Role>"]
+    RoleA -- "<exchange>" --> BB
+    BB -- "<exchange>" --> RoleB
+  end
+```
+
+*Figure 1: the <Building Block name> in the <role> role.*
+
+## Description
+
+<!-- The diagrams and tables below must agree: every actor in the functionality map appears in the actor table, and every arrow crossing the boundary appears in the interface table. -->
+
+### System under test
+
+<!--
+State what is assessed when a solution claims conformance. The subject is a software component, never a government service, a person or an organisation.
+
+- What it is, in one or two sentences
+- Where its boundary sits: what is inside, and which closely related things are outside
+- How it is observed: as a black box, through its interfaces. Note anything that can only be verified by audit
+
+Do not describe the internal architecture of a solution.
+-->
+
+The system under test is a software component that <what it is and does>.
+
+Its boundary includes <what is inside>. It excludes <closely related things that are outside>.
+
+The <Building Block name> is assessed as a black box, through its interfaces. <What cannot be observed from outside, and is therefore verified by audit.>
+
+### Functionalities
+
+<!-- One row per functionality. Each has its own file in requirements/, and the name here matches that file's title exactly. Realises names the capabilities from Value the functionality realises, by title, and matches the realises field of the file. Description repeats the description field of the file. Conformance is "Core", or "<Extension> extension", and matches the conformance and extension fields of the file. See the Specification Framework, chapter "Functionalities and Extensions". -->
+
+| Functionality | Realises | Conformance | Description | Requirements |
+|---|---|---|---|---|
+| <Functionality name> | <Capability> | Core | <One sentence> | `requirements/<functionality-name>.md` |
+| <Functionality name> | <Capability>, <Capability> | <Extension> extension | <One sentence> | `requirements/<functionality-name>.md` |
+
+<!-- Explain why these functionalities were chosen. Where several functionalities realise one capability, say how they divide it, and when some of them are in an extension, what a solution claiming it provides beyond the core. Then name the functionalities a reader might expect but that were placed elsewhere: that part becomes the "Not covered" list in scope.md. -->
+
+<Capability> is realised by <Functionality name> and <Functionality name>, which <how they divide it>. <What a solution claiming an extension adds to the capability, if any.>
+
+<Functionalities a reader might expect here, and where each was placed instead.>
+
+#### Core and extensions
+
+<!--
+If the specification has no extensions, replace this section with one sentence: "Every functionality is part of the core." and delete the table.
+
+Otherwise:
+- Explain the core first, and why it stands alone: what a solution that meets only the core can do, and why that makes it an instance of the Building Block
+- One row per extension, matching the extensions declared in metadata.yml, with the same titles
+- Adds: what a solution claiming the extension can do that the core alone cannot. Write it for a buyer deciding whether to require it
+- Role served: the role the Building Block performs through the extension, and the Domain Reference Architecture that describes it. Leave empty if none
+- Requires: other extensions a solution must also claim
+- Explain why each extension is not core: some conformant products legitimately lack it, it is an obligation towards a domain role not every deployment has, or it depends on infrastructure not every deployment has
+- Say which combinations you expect buyers to ask for
+-->
+
+The core is <what a solution that meets only the core can do, and why that is enough to make it an instance of the Building Block>.
+
+| Extension | Adds | Functionalities | Role served | Requires |
+|---|---|---|---|---|
+| <Extension> | <What a solution claiming it can do that the core alone cannot> | <Functionality name> | <role>, towards <role>, in `<govstack:ra:identifier>` | <Extension, or empty> |
+
+<Why each extension is not core, and which combinations buyers are expected to ask for.>
+
+<!-- Functionality map: functionalities inside the boundary, actors outside it, and how each actor reaches each functionality. Draw each extension as a group inside the boundary; without extensions, drop the groups. A functionality no actor reaches, directly or through another functionality, is probably an internal mechanism. -->
+
+```mermaid
+flowchart LR
+  ActorA(["<Actor><br/>(person)"])
+  ActorB[["<Actor>"]]
+
+  subgraph SUT["<Building Block name> Building Block (system under test)"]
+    direction TB
+    subgraph Core["Core"]
+      F1["<Functionality name>"]
+    end
+    subgraph Ext1["<Extension> extension"]
+      F2["<Functionality name>"]
+    end
+    F1 --> F2
+  end
+
+  ActorA -- "<interaction>" --> F1
+  ActorB -- "<interaction>" --> F2
+  F2 -- "<interaction>" --> ActorB
+```
+
+*Figure 2: functionality map of the <Building Block name> Building Block.*
+
+### Actors
+
+<!--
+List every actor the Building Block interacts with: people, organisations, other systems and other Building Blocks.
+
+- Specified where: the publication that defines the actor's behaviour (a Domain Reference Architecture, another Building Block specification, an external standard, or "Not specified"). An actor outside the boundary is never specified by this document, only its interface with the Building Block
+- Use the role names of the Domain Reference Architecture where one exists
+- Every actor marked Outside reappears in "Not covered" in scope.md, with its owner
+- When an actor reaches the Building Block only through an extension, name the extension: "<Functionality name> (<Extension> extension)"
+-->
+
+| Actor | Kind | Boundary | Reaches the Building Block through | Specified where |
+|---|---|---|---|---|
+| <Actor> | <Person \| Organisation \| System \| Building Block> | <Inside \| Outside> | <Functionality name> | <`govstack:...` \| external standard \| Not specified> |
+
+### Interfaces
+
+<!--
+List every interface that crosses the boundary of the system under test.
+
+- Type: Service API, Consumed API, Protocol, Event, User interface, Device or File
+- Every interface listed is realised by at least one requirement whose interaction field matches its type (SERVICE_API, CONSUMED_API, PROTOCOL, EVENT, USER_INTERFACE, DEVICE, FILE), and every requirement that is not INTERNAL realises an interface listed here
+- Do not list interfaces inherited from the cross-functional requirements (logging, monitoring, deployment), unless this Building Block adds to the inherited contract
+- Record the logical counterpart, not the Information Mediator, unless the Building Block depends on a mediation feature specifically
+- Name the contract, not the technology
+- A protocol defined for a domain is usually realised by an extension functionality. If a core functionality realises it, explain in "Core and extensions" why every conformant solution needs it
+-->
+
+| Interface | Counterpart | Direction | Functionality | Type | Contract defined in |
+|---|---|---|---|---|---|
+| <Interface name> | <Actor> | <Inbound \| Outbound \| both, described> | <Functionality name> | <Type> | <This specification, `resources/api/...` \| `govstack:...` \| external standard> |
