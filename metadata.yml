@@ -6,8 +6,8 @@ url: https://specs.govstack.global/<name>/
 repository: https://github.com/govStackWorkingGroup/bb-<name>
 urn: govstack:spec:<type>:<name>
 owner_group: govstack:team:editorial-committee
-# Capabilities: the outcomes the Building Block makes possible, named in the Purpose of
-# introduction/overview.md. Each functionality in requirements/ lists the ids it realises.
+# Capabilities: the outcomes the Building Block makes possible, named in
+# introduction/purpose.md. Each functionality in requirements/ lists the ids it realises.
 # See the Specification Framework, chapter "Functionalities and Extensions", section "Capabilities".
 capabilities:
   - id: <capability-id> # unique in this specification, never reused
