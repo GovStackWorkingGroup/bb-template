@@ -2,10 +2,10 @@
 toc:
   introduction:
     - purpose.md
-    - overview.md
     - scope.md
-    - references.yml
+    - technical_overview.md
     - terminology.yml
+    - references.md
   requirements:
     - functionality-name.md
   resources:

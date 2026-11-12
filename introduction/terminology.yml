@@ -1,0 +1,12 @@
+# How to fill this file: see the Specification Framework, chapter "Introductory Chapters",
+# section "Terminology", and GovStack Terminologies for how to choose and define terms.
+# List the terms this specification uses in a sense a reader might not assume, and the terms
+# it shares with adjacent publications. Where another publication already defines a term,
+# point to it through designated_at rather than defining it again.
+# Replace every <placeholder> and delete these comments before publication.
+- entry:
+    designation: <Term, written exactly as the specification uses it>
+    description: |
+      <Definition, following the rules in GovStack Terminologies>
+    designated_at: <govstack:spec:bb:identifier, or the publication the definition is taken from>
+    urn: govstack:term:<id>
