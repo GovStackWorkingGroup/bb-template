@@ -10,15 +10,13 @@ See [GovStack Process](https://github.com/GovStackWorkingGroup/govstack-process)
 ├── assets
 ├── authors.yml
 ├── introduction
-│   ├── overview.md
-│   ├── references.yml
+│   ├── purpose.md
 │   ├── scope.md
-│   └── terminology.yml
-├── LICENSE
-├── metadata.yml
-├── README.md
+│   ├── technical_overview.md
+│   ├── terminology.yml
+│   └── references.md
 ├── requirements
-│   ├── functionality-name.md
+│   └── functionality-name.md
 ├── resources
 │   ├── api
 │   │   ├── swagger.json
@@ -43,6 +41,11 @@ See [GovStack Process](https://github.com/GovStackWorkingGroup/govstack-process)
 │           │   └── entrypoint.sh
 │           ├── docker-compose.yaml
 │           └── test_entrypoint.sh
+├── LICENSE
+├── README.md
+├── CHANGELOG.md
+├── RELEASE_NOTES.md
+├── metadata.yml
 └── toc.yml
 ```
 
