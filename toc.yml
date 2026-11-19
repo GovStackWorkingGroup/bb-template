@@ -1,7 +1,6 @@
 ---
 toc:
   introduction:
-    - purpose.md
     - overview.md
     - scope.md
     - references.yml
