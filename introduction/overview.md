@@ -73,10 +73,10 @@ flowchart LR
 
 <!-- The diagrams and tables below must agree: every actor in the functionality map appears in the actor table, and every arrow crossing the boundary appears in the interface table. -->
 
-### System under test
+### Building Block Software
 
 <!--
-State what is assessed when a solution claims conformance. The subject is a software component, never a government service, a person or an organisation.
+State what is assessed when a software solution claims conformance. The subject is a software component, never a government service, a person or an organisation.
 
 - What it is, in one or two sentences
 - Where its boundary sits: what is inside, and which closely related things are outside
@@ -85,7 +85,7 @@ State what is assessed when a solution claims conformance. The subject is a soft
 Do not describe the internal architecture of a solution.
 -->
 
-The system under test is a software component that <what it is and does>.
+The Building Block Software is a software component that <what it is and does>.
 
 Its boundary includes <what is inside>. It excludes <closely related things that are outside>.
 
